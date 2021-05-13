@@ -24,10 +24,17 @@ public class VacationController {
 
     @RequestMapping(path = "/work", method = RequestMethod.GET)
     @ResponseStatus(HttpStatus.OK)
-    public ResponseEntity<Integer> work(@RequestParam(value = "workDays", defaultValue = "0") int workDays) {
+    public ResponseEntity<Integer> work(@RequestParam(value="empId") String empId, @RequestParam(value = "workDays", defaultValue = "0") int workDays) {
     	logger.log(Level.INFO, "Received request to record work: {}", workDays);
-    	vacationService.work();
+    	vacationService.work(empId, workDays);
         return new ResponseEntity<Integer>(workDays, HttpStatus.OK);
     }
 
+    @RequestMapping(path = "/takeVacation", method = RequestMethod.GET)
+    @ResponseStatus(HttpStatus.OK)
+    public ResponseEntity<Integer> takeVacation(@RequestParam(value="empId") String empId, @RequestParam(value = "vacationDays", defaultValue = "0") Float vacationDays) {
+    	logger.log(Level.INFO, "Received request to record vacation: {}", vacationDays);
+    	vacationService.takeVacation(empId, vacationDays);
+        return new ResponseEntity<Integer>(vacationDays.intValue(), HttpStatus.OK);
+    }
 }

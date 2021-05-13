@@ -1,19 +1,31 @@
 package com.eldho.labcorp.domain;
 
-public abstract class Employee {
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
+import com.eldho.labcorp.service.VacationService;
+
+public class Employee {
 
 	String id;
 	String type;
 	Integer totalWorkDays = 0;
 	Float totalVacationDays = (float) 0;
 
+	
+	
 	public Employee(String id, String type) {
 		this.id = id; 
 		this.type = type;
 	}
 
-	abstract public void work(Integer workDays);
-	
+	public void work(Integer workDays) {
+	};
+
+	public void takeVacation(Float vacationDays) {
+		this.totalVacationDays = this.totalVacationDays - vacationDays;
+	}
+
 	public String getId() {
 		return this.id;
 	}
@@ -28,10 +40,6 @@ public abstract class Employee {
 	
 	public Float getTotalVacationDays() {
 		return this.totalVacationDays;
-	}
-
-	public void takeVacation(Float vacationDays) {
-		this.totalVacationDays = this.totalVacationDays - vacationDays;
 	}
 
 	/**

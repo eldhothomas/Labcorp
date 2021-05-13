@@ -3,27 +3,50 @@ package com.eldho.labcorp.service;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.stereotype.Service;
-import com.eldho.labcorp.domain.HourlyEmployee;
+
+import com.eldho.labcorp.ApplicationStartup;
+import com.eldho.labcorp.domain.Employee;
 
 @Service
 public class VacationService {
 
 	private static final Logger logger = LogManager.getLogger(VacationService.class);
 
-	public void work() {
+	public void work(String empId, int workDays) {
 
-		logger.info("Creating instance");
-		HourlyEmployee hrEmployee01 = new HourlyEmployee("E001", "H");
-		logger.info("Instance created");
-		logger.info("Employee E001 - Id: " + hrEmployee01.getId() + ". Type: " + hrEmployee01.getType() 		+ ". Total work days: " + hrEmployee01.getTotalWorkDays() + ". Vacation Balance: " 		+ hrEmployee01.getTotalVacationDays());
+		Object object = ApplicationStartup.employeeInstances.get(empId);
+		if (object == null) {
+			logger.info("Employee " + empId + " not found");
+			return;
+		}
 
-		hrEmployee01.work(250);
-		hrEmployee01.takeVacation((float) 2);
+		Employee employee = (Employee) object;
 
-		hrEmployee01.work(200);
-		logger.info("Employee E001 - Id: " + hrEmployee01.getId() + ". Type: " + hrEmployee01.getType()
-				+ ". Total work days: " + hrEmployee01.getTotalWorkDays() + ". Vacation Balance: "
-				+ hrEmployee01.getTotalVacationDays());
+		logger.info("Before. Emp Id: " + employee.getId() + ". Type: " + employee.getType() + ". Total work days: "
+				+ employee.getTotalWorkDays() + ". Vacation Balance: " + employee.getTotalVacationDays());
+		employee.work(workDays);
+		logger.info(
+				"After. Employee - Id: " + employee.getId() + ". Type: " + employee.getType() + ". Total work days: "
+						+ employee.getTotalWorkDays() + ". Vacation Balance: " + employee.getTotalVacationDays());
+
+	}
+
+	public void takeVacation(String empId, Float vacationDays) {
+
+		Object object = ApplicationStartup.employeeInstances.get(empId);
+		if (object == null) {
+			logger.info("Employee " + empId + " not found");
+			return;
+		}
+
+		Employee employee = (Employee) object;
+
+		logger.info("Before. Emp Id: " + employee.getId() + ". Type: " + employee.getType() + ". Total work days: "
+				+ employee.getTotalWorkDays() + ". Vacation Balance: " + employee.getTotalVacationDays());
+		employee.takeVacation(vacationDays);
+		logger.info(
+				"After. Employee - Id: " + employee.getId() + ". Type: " + employee.getType() + ". Total work days: "
+						+ employee.getTotalWorkDays() + ". Vacation Balance: " + employee.getTotalVacationDays());
 
 	}
 
