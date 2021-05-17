@@ -6,18 +6,19 @@ import org.springframework.stereotype.Service;
 
 import com.eldho.labcorp.ApplicationStartup;
 import com.eldho.labcorp.domain.Employee;
+import com.eldho.labcorp.domain.EmployeeTo;
 
 @Service
 public class VacationService {
 
 	private static final Logger logger = LogManager.getLogger(VacationService.class);
 
-	public void work(String empId, int workDays) {
+	public EmployeeTo work(String empId, int workDays) {
 
 		Object object = ApplicationStartup.employeeInstances.get(empId);
 		if (object == null) {
 			logger.info("Employee " + empId + " not found");
-			return;
+			return null;
 		}
 
 		Employee employee = (Employee) object;
@@ -28,15 +29,18 @@ public class VacationService {
 		logger.info(
 				"After. Employee - Id: " + employee.getId() + ". Type: " + employee.getType() + ". Total work days: "
 						+ employee.getTotalWorkDays() + ". Vacation Balance: " + employee.getTotalVacationDays());
+		
+		EmployeeTo employeeTo = new EmployeeTo(employee.getId(), employee.getTotalWorkDays(), employee.getTotalVacationDays());
+		return employeeTo;
 
 	}
 
-	public void takeVacation(String empId, Float vacationDays) {
+	public EmployeeTo takeVacation(String empId, Float vacationDays) {
 
 		Object object = ApplicationStartup.employeeInstances.get(empId);
 		if (object == null) {
 			logger.info("Employee " + empId + " not found");
-			return;
+			return null;
 		}
 
 		Employee employee = (Employee) object;
@@ -47,6 +51,9 @@ public class VacationService {
 		logger.info(
 				"After. Employee - Id: " + employee.getId() + ". Type: " + employee.getType() + ". Total work days: "
 						+ employee.getTotalWorkDays() + ". Vacation Balance: " + employee.getTotalVacationDays());
+
+		EmployeeTo employeeTo = new EmployeeTo(employee.getId(), employee.getTotalWorkDays(), employee.getTotalVacationDays());
+		return employeeTo;
 
 	}
 

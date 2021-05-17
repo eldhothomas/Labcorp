@@ -1,9 +1,10 @@
-# Charter
+# Labcorp
 
 This is an assignment for Labcorp. Goal of the assignment is to create an application will perform the following logic -
 
 - Write classes in Java to represent 3 different types of employees - hourly employees, Salaried employees, Salaried employee managers.
-- Each employee has a property - Number of vacation days (floating point) accumulated for the work year (defined as 260 workdays). It cannot be negative value and cannot be written externally. Upon creation, it is 0
+- Each employee has a property - Number of vacation days (floating point) accumulated for the work year (defined as 260 workdays). 
+  It cannot be negative value and cannot be written externally. Upon creation, it is 0
 - Hourly employees accumulate 10 vacation days.
 - Salaried employees accumulate 15.
 - Salaried employee managers accumulate 30.
@@ -66,7 +67,7 @@ gradlew eclipse  - Set up Eclipse environment.
 
 gradlew bootRun  - Spin up the application in a Tomcat server. 
 
-gradlew bootJar - Create a FAT JAR in C:\Temp\Builds\charter\libs directory. 
+gradlew bootJar - Create a FAT JAR in C:\Temp\Builds\labcorp\libs directory. 
 >This JAR will have embedded app server
 
 ## application.yml
@@ -107,7 +108,7 @@ On Run-Configuration, add these VM arguments -
 
 ### To Run the Fat Jar (Created by gradlew bootJar)
 
-java -DLOG4J_LEVEL=info -DLOG4J_PATH=C:/Temp/Logs/charter -Dspring.profiles.active=<profile> -jar <projectName>-?.?.?.jar   
+java -DLOG4J_LEVEL=info -DLOG4J_PATH=C:/Temp/Logs/labcorp -Dspring.profiles.active=<profile> -jar <projectName>-?.?.?.jar   
 *where profile is the spring profile from application.yml*  
 Note - System properties (-D) must be supplied before the JAR file on this command line.
 
@@ -145,7 +146,8 @@ Port and Context-Path (/) are in application.yml for each env
 
 ### REST Controllers
 
-http://localhost:8080/rest/work?workDays=200   - Add work days and calculate remaining vacation
+http://localhost:8080/rest/work?empId=H001&workDays=200     		- Record work days
+http://localhost:8080/rest/takeVacation?empId=H001&vacationDays=2   - Take vacation
 
 ### MVC Controller
 

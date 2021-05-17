@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.eldho.labcorp.domain.EmployeeTo;
 import com.eldho.labcorp.service.VacationService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -24,17 +26,17 @@ public class VacationController {
 
     @RequestMapping(path = "/work", method = RequestMethod.GET)
     @ResponseStatus(HttpStatus.OK)
-    public ResponseEntity<Integer> work(@RequestParam(value="empId") String empId, @RequestParam(value = "workDays", defaultValue = "0") int workDays) {
+    public ResponseEntity<EmployeeTo> work(@RequestParam(value="empId") String empId, @RequestParam(value = "workDays", defaultValue = "0") int workDays) {
     	logger.log(Level.INFO, "Received request to record work: {}", workDays);
-    	vacationService.work(empId, workDays);
-        return new ResponseEntity<Integer>(workDays, HttpStatus.OK);
+    	EmployeeTo employeeTo = vacationService.work(empId, workDays);
+        return new ResponseEntity<EmployeeTo>(employeeTo, HttpStatus.OK);
     }
 
     @RequestMapping(path = "/takeVacation", method = RequestMethod.GET)
     @ResponseStatus(HttpStatus.OK)
-    public ResponseEntity<Integer> takeVacation(@RequestParam(value="empId") String empId, @RequestParam(value = "vacationDays", defaultValue = "0") Float vacationDays) {
+    public ResponseEntity<EmployeeTo> takeVacation(@RequestParam(value="empId") String empId, @RequestParam(value = "vacationDays", defaultValue = "0") Float vacationDays) {
     	logger.log(Level.INFO, "Received request to record vacation: {}", vacationDays);
-    	vacationService.takeVacation(empId, vacationDays);
-        return new ResponseEntity<Integer>(vacationDays.intValue(), HttpStatus.OK);
+    	EmployeeTo employeeTo = vacationService.takeVacation(empId, vacationDays);
+        return new ResponseEntity<EmployeeTo>(employeeTo, HttpStatus.OK);
     }
 }

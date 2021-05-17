@@ -1,10 +1,5 @@
 package com.eldho.labcorp.domain;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-
-import com.eldho.labcorp.service.VacationService;
-
 public class Employee {
 
 	String id;
@@ -12,8 +7,6 @@ public class Employee {
 	Integer totalWorkDays = 0;
 	Float totalVacationDays = (float) 0;
 
-	
-	
 	public Employee(String id, String type) {
 		this.id = id; 
 		this.type = type;
@@ -24,6 +17,9 @@ public class Employee {
 
 	public void takeVacation(Float vacationDays) {
 		this.totalVacationDays = this.totalVacationDays - vacationDays;
+		if (this.totalVacationDays < 0) {
+			this.totalVacationDays = (float) 0;
+		}
 	}
 
 	public String getId() {
