@@ -146,8 +146,8 @@ Port and Context-Path (/) are in application.yml for each env
 
 ### REST Controllers
 
-http://localhost:8080/rest/work?empId=H001&workDays=200     		- Record work days
-http://localhost:8080/rest/takeVacation?empId=H001&vacationDays=2   - Take vacation
+http://localhost:8080/rest/work/H001/200     	- Record work days
+http://localhost:8080/rest/takeVacation/H0012 	- Take vacation
 
 ### MVC Controller
 

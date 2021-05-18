@@ -9,9 +9,9 @@ import com.eldho.labcorp.domain.Employee;
 import com.eldho.labcorp.domain.EmployeeTo;
 
 @Service
-public class VacationService {
+public class WorkService {
 
-	private static final Logger logger = LogManager.getLogger(VacationService.class);
+	private static final Logger logger = LogManager.getLogger(WorkService.class);
 
 	public EmployeeTo work(String empId, int workDays) {
 

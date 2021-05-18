@@ -10,3 +10,4 @@ build
 *.class
 ~*.docx
 ~*.tmp
+.temp*
