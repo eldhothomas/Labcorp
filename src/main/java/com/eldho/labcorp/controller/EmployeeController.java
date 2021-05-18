@@ -12,23 +12,31 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import com.eldho.labcorp.domain.EmployeeTo;
-import com.eldho.labcorp.service.WorkService;
+import com.eldho.labcorp.service.EmployeeService;
 
 @RestController
-@RequestMapping("/rest")
-public class WorkController {
+@RequestMapping("/api/employee")
+public class EmployeeController {
 
-	private static final Logger logger = LogManager.getLogger(WorkController.class);
+	private static final Logger logger = LogManager.getLogger(EmployeeController.class);
 
 	@Autowired
-	WorkService vacationService;
+	EmployeeService employeeService;
 
-	@RequestMapping(path = "/work/{empId}/{workDays}", method = RequestMethod.GET)
+	@RequestMapping(path = "/{empId}", method = RequestMethod.GET)
 	@ResponseStatus(HttpStatus.OK)
-	public ResponseEntity<EmployeeTo> work(@PathVariable("empId") String empId,
+	public ResponseEntity<EmployeeTo> getEmployee(@PathVariable("empId") String empId) {
+		logger.log(Level.INFO, "Received request to get employee: {}", empId);
+		EmployeeTo employeeTo = employeeService.getEmployee(empId);
+		return new ResponseEntity<EmployeeTo>(employeeTo, HttpStatus.OK);
+	}
+
+	@RequestMapping(path = "/recordWork/{empId}/{workDays}", method = RequestMethod.GET)
+	@ResponseStatus(HttpStatus.OK)
+	public ResponseEntity<EmployeeTo> recordWork(@PathVariable("empId") String empId,
 			@PathVariable("workDays") int workDays) {
 		logger.log(Level.INFO, "Received request to record work: {}", workDays);
-		EmployeeTo employeeTo = vacationService.work(empId, workDays);
+		EmployeeTo employeeTo = employeeService.recordWork(empId, workDays);
 		return new ResponseEntity<EmployeeTo>(employeeTo, HttpStatus.OK);
 	}
 
@@ -37,7 +45,7 @@ public class WorkController {
 	public ResponseEntity<EmployeeTo> takeVacation(@PathVariable("empId") String empId,
 			@PathVariable("vacationDays") Float vacationDays) {
 		logger.log(Level.INFO, "Received request to record vacation: {}", vacationDays);
-		EmployeeTo employeeTo = vacationService.takeVacation(empId, vacationDays);
+		EmployeeTo employeeTo = employeeService.takeVacation(empId, vacationDays);
 		return new ResponseEntity<EmployeeTo>(employeeTo, HttpStatus.OK);
 	}
 }

@@ -74,8 +74,9 @@ Port and Context-Path (/) are in application.yml for each env
 
 ### REST Controllers
 
-http://localhost:8080/rest/work/H001/200     	- Record work days
-http://localhost:8080/rest/takeVacation/H001/2 	- Take vacation
+http://localhost:8080/api/employee/H001     			- Retrieve employee
+http://localhost:8080/api/employee/recordWork/H001/200  - Record work days
+http://localhost:8080/api/employee/takeVacation/H001/2 	- Take vacation
 
 ## Actuator Endpoints
 

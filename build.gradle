@@ -148,23 +148,11 @@ dependencies {
     //Includes web components. Pulls Tomcat by default, it is possible to pull Jetty or Undertow instead
     implementation("org.springframework.boot:spring-boot-starter-web") 
     
-    //Includes the Actuator. Endpoints are available under /actuator - /actuator/health, /actuator/info etc.
-    implementation("org.springframework.boot:spring-boot-starter-actuator") 
-
-    //Including this makes Spring Boot automatically use Thymeleaf (Templates are in src/main/resource/templates) 
-    implementation("org.springframework.boot:spring-boot-starter-thymeleaf")
-
     //Note that spring-boot-starter-logging is excluded above. If not Spring Boot will use LogBack for logging. Here, I am over-riding that with log4j2
     implementation("org.springframework.boot:spring-boot-starter-log4j2")
 
-    //Devtools installs a LiveReload server. With a browser plug-in (like RemoteLiveReload), browser can automatically refresh when resources change (not tested)
-    implementation("org.springframework.boot:spring-boot-devtools")
-
     testImplementation("org.springframework.boot:spring-boot-starter-test")
 
-
-    runtimeOnly("org.webjars:bootstrap:4.2.1")
-    
     runtimeOnly("com.sun.xml.bind:jaxb-impl:2.3.2")
     runtimeOnly("com.sun.xml.bind:jaxb-core:2.3.0.1")
 

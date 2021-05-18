@@ -9,11 +9,29 @@ import com.eldho.labcorp.domain.Employee;
 import com.eldho.labcorp.domain.EmployeeTo;
 
 @Service
-public class WorkService {
+public class EmployeeService {
 
-	private static final Logger logger = LogManager.getLogger(WorkService.class);
+	private static final Logger logger = LogManager.getLogger(EmployeeService.class);
 
-	public EmployeeTo work(String empId, int workDays) {
+	public EmployeeTo getEmployee(String empId) {
+
+		Object object = ApplicationStartup.employeeInstances.get(empId);
+		if (object == null) {
+			logger.info("Employee " + empId + " not found");
+			return null;
+		}
+
+		Employee employee = (Employee) object;
+
+		logger.info("Retrieved. Emp Id: " + employee.getId() + ". Type: " + employee.getType() + ". Total work days: "
+				+ employee.getTotalWorkDays() + ". Vacation Balance: " + employee.getTotalVacationDays());
+
+		EmployeeTo employeeTo = new EmployeeTo(employee.getId(), employee.getTotalWorkDays(),
+				employee.getTotalVacationDays());
+		return employeeTo;
+	}
+
+	public EmployeeTo recordWork(String empId, int workDays) {
 
 		Object object = ApplicationStartup.employeeInstances.get(empId);
 		if (object == null) {
@@ -29,8 +47,9 @@ public class WorkService {
 		logger.info(
 				"After. Employee - Id: " + employee.getId() + ". Type: " + employee.getType() + ". Total work days: "
 						+ employee.getTotalWorkDays() + ". Vacation Balance: " + employee.getTotalVacationDays());
-		
-		EmployeeTo employeeTo = new EmployeeTo(employee.getId(), employee.getTotalWorkDays(), employee.getTotalVacationDays());
+
+		EmployeeTo employeeTo = new EmployeeTo(employee.getId(), employee.getTotalWorkDays(),
+				employee.getTotalVacationDays());
 		return employeeTo;
 
 	}
@@ -52,7 +71,8 @@ public class WorkService {
 				"After. Employee - Id: " + employee.getId() + ". Type: " + employee.getType() + ". Total work days: "
 						+ employee.getTotalWorkDays() + ". Vacation Balance: " + employee.getTotalVacationDays());
 
-		EmployeeTo employeeTo = new EmployeeTo(employee.getId(), employee.getTotalWorkDays(), employee.getTotalVacationDays());
+		EmployeeTo employeeTo = new EmployeeTo(employee.getId(), employee.getTotalWorkDays(),
+				employee.getTotalVacationDays());
 		return employeeTo;
 
 	}
