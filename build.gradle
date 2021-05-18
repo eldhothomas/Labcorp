@@ -154,39 +154,17 @@ dependencies {
     //Including this makes Spring Boot automatically use Thymeleaf (Templates are in src/main/resource/templates) 
     implementation("org.springframework.boot:spring-boot-starter-thymeleaf")
 
-	//Adding Spring Security will add a login screen.
-	//The default user id is "user" and password is given by spring.security.user.password (application.yml). 
-	//If password property is not specified, it is random generated during startup (visible on the SpringBoot console log - "Using generated security password") 
-    implementation("org.springframework.boot:spring-boot-starter-security")
-
     //Note that spring-boot-starter-logging is excluded above. If not Spring Boot will use LogBack for logging. Here, I am over-riding that with log4j2
     implementation("org.springframework.boot:spring-boot-starter-log4j2")
 
     //Devtools installs a LiveReload server. With a browser plug-in (like RemoteLiveReload), browser can automatically refresh when resources change (not tested)
     implementation("org.springframework.boot:spring-boot-devtools")
 
-    //Hibernate is automatically added as a dependency on spring-boot-starter-data-jpa  
-    implementation("org.springframework.boot:spring-boot-starter-data-jpa")
-
-    implementation("org.springframework.boot:spring-boot-starter-cache")
-    implementation("org.hibernate:hibernate-jcache")
-    implementation("org.ehcache:ehcache")
-    implementation("javax.cache:cache-api")
-    
     testImplementation("org.springframework.boot:spring-boot-starter-test")
 
-    //Spring Session Using Redis
-    //"org.springframework.boot:spring-boot-starter-data-redis" does not work with Spring Boot 2.1. Needs "spring-session-data-redis" 
-    implementation("org.springframework.session:spring-session-data-redis")
-    //"spring-session-data-redis" doesn't pull Jedis or Lettuce drivers, so we need the explicit dependency
-    implementation("redis.clients:jedis")
-    implementation("io.lettuce:lettuce-core")
 
     runtimeOnly("org.webjars:bootstrap:4.2.1")
     
-    //Adding this and adding the corresponding properties in applicatin.yml embeds an H2 database with the application
-    runtimeOnly("com.h2database:h2:1.4.199")
-
     runtimeOnly("com.sun.xml.bind:jaxb-impl:2.3.2")
     runtimeOnly("com.sun.xml.bind:jaxb-core:2.3.0.1")
 

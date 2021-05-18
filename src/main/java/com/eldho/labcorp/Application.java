@@ -45,10 +45,6 @@ public class Application extends SpringBootServletInitializer implements Command
 		logger.info("YAML Env: " + myConfig.getEnvironment());
 		logger.info("YAML name: " + myConfig.getName());
 		logger.info("Spring Profile: " + myConfig.getSpring().getProfiles());
-		logger.info("DB01 URL: " + myConfig.getSpring().getDatasource().getDb01().getJdbcUrl());
-		logger.info("JPA DP Platform: " + myConfig.getSpring().getJpa().getDatabasePlatform());
-		logger.info("H2 Path: " + myConfig.getSpring().getH2().getConsole().getPath());
-		logger.info("servers: " + myConfig.getServers());
 		logger.info("LOG4J_PATH : {}", System.getProperty("LOG4J_PATH"));
 		logger.info("LOG4J_LEVEL : {}", System.getProperty("LOG4J_LEVEL"));
 
