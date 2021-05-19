@@ -14,6 +14,12 @@ import com.eldho.labcorp.domain.HourlyEmployee;
 import com.eldho.labcorp.domain.ManagerEmployee;
 import com.eldho.labcorp.domain.SalariedEmployee;
 
+/**
+ * Create instances at start up
+ * 
+ * @author dooow
+ *
+ */
 @Component
 public class ApplicationStartup implements ApplicationRunner {
 
