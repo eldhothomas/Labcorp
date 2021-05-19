@@ -51,7 +51,6 @@ public class ApplicationStartup implements ApplicationRunner {
 		employeeInstances.put("S010", new SalariedEmployee("S010"));
 		logger.info("Created 10 salaried employee instances");
 
-
 		//10 managers
 		employeeInstances.put("M001", new ManagerEmployee("M001"));
 		employeeInstances.put("M002", new ManagerEmployee("M002"));
