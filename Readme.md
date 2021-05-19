@@ -10,6 +10,7 @@ This is an assignment for Labcorp. Goal of the assignment is to create an applic
 - Salaried employee managers accumulate 30.
 
 Each employee has -
+- getDetails() method
 - work() method
 - takeVacation() method 
 
